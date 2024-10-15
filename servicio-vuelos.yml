@@ -1,21 +1,15 @@
-# Conversion to YAML from Properties formar report
-# Warnings:
-# - The yaml file had comments which are lost in the refactoring!
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/agencia_viajes
-    username: root
-    password: ''
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: agencia_viajes 
   jpa:
-    show-sql: true
     hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+      ddl-auto: none  
+    show-sql: false 
 server:
-  port: 9000
+  port: 9000 
 eureka:
   client:
     service-url:
