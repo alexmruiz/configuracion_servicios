@@ -1,21 +1,19 @@
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/agencia_viajes
-    username: root
-    password: ''
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: agencia_viajes  # Nombre de tu base de datos MongoDB
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+      ddl-auto: none  # No se utiliza JPA con MongoDB
+    show-sql: false  # JPA no es necesario con MongoDB, puedes deshabilitar esto
 server:
-  port: 8000
+  port: 8000  # El puerto en el que se ejecutará tu aplicación
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
+
