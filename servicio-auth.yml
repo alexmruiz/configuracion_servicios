@@ -1,15 +1,15 @@
+spring:
   data:
     mongodb:
       host: localhost
       port: 27017
-      database: agencia_viajes
+      database: agencia_viajes  # Nombre de tu base de datos MongoDB
 
 server:
-  port: 9500  
-
+  port: 8000  # El puerto en el que se ejecutará tu aplicación
 eureka:
   client:
-    service_url:
+    service-url:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
