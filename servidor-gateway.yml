@@ -9,28 +9,28 @@ spring:
           predicates:
             - Path=/svuelos/**
           filters:
-            - RewritePath=/svuelos/(?<segment>.*), /$\\{segment}
+            - RewritePath=/svuelos/*, /
             
         - id: serv-hoteles
           uri: lb://servicio-hoteles
           predicates:
             - Path=/shoteles/**
           filters:
-            - RewritePath=/shoteles/(?<segment>.*), /$\\{segment}
+            - RewritePath=/shoteles/*, /
             
         - id: serv-reservas
           uri: lb://servicio-reservas
           predicates:
             - Path=/sreservas/**
           filters:
-            - RewritePath=/sreservas/(?<segment>.*), /$\\{segment}
+            - RewritePath=/sreservas/*, /
             
         - id: serv-auth
           uri: lb://servicio-auth
           predicates:
             - Path=/sauth/**
           filters:
-            - RewritePath=/sauth/(?<segment>.*), /$\\{segment}
+            - RewritePath=/sauth/*, /
     
 eureka:                  
   client:
