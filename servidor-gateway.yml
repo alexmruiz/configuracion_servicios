@@ -27,6 +27,13 @@ spring:
           - Path=/sreservas/**
         filters:
           - RewritePath=/sreservas/*, /
+          
+      - id: serv-auth
+          uri:  lb://servicio-auth #http://localhost:8080
+          predicates:
+            - Path=/sauth/**
+          filters:
+            - RewritePath=/sauth/*, /
         
 eureka:                  
  client:
