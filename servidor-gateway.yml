@@ -2,40 +2,37 @@ server:
   port: 7000
 spring:
   cloud: 
-   gateway:
+    gateway:
       routes:
-      - id: serv-vuelos
-          #lb:// cuando se va a acceder a través de Eureka
-        uri: lb://servicio-vuelos #http://localhost:8080
-        predicates:
-          - Path=/svuelos/**
-        filters:
-          - RewritePath=/svuelos/*, /
-          
-      - id: serv-hoteles
-          #lb:// cuando se va a acceder a través de Eureka
-        uri: lb://servicio-hoteles #http://localhost:8080
-        predicates:
-          - Path=/shoteles/**
-        filters:
-          - RewritePath=/shoteles/*, /
-          
-      - id: serv-reservas
-          #lb:// cuando se va a acceder a través de Eureka
-        uri: lb://servicio-reservas #http://localhost:8080
-        predicates:
-          - Path=/sreservas/**
-        filters:
-          - RewritePath=/sreservas/*, /
-          
-      - id: serv-auth
-          uri:  lb://servicio-auth #http://localhost:8080
+        - id: serv-vuelos
+          uri: lb://servicio-vuelos
+          predicates:
+            - Path=/svuelos/**
+          filters:
+            - RewritePath=/svuelos/(?<segment>.*), /$\\{segment}
+            
+        - id: serv-hoteles
+          uri: lb://servicio-hoteles
+          predicates:
+            - Path=/shoteles/**
+          filters:
+            - RewritePath=/shoteles/(?<segment>.*), /$\\{segment}
+            
+        - id: serv-reservas
+          uri: lb://servicio-reservas
+          predicates:
+            - Path=/sreservas/**
+          filters:
+            - RewritePath=/sreservas/(?<segment>.*), /$\\{segment}
+            
+        - id: serv-auth
+          uri: lb://servicio-auth
           predicates:
             - Path=/sauth/**
           filters:
-            - RewritePath=/sauth/*, /
-        
+            - RewritePath=/sauth/(?<segment>.*), /$\\{segment}
+    
 eureka:                  
- client:
-  serviceUrl:
-   defaultZone: http://localhost:8761/eureka  
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
